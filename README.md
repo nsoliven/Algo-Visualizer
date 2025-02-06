@@ -8,7 +8,7 @@ Algorithm Visualizer is an interactive web application that demonstrates how cla
 | Name            | Role               | GitHub                                         |
 | --------------- | ------------------ | ---------------------------------------------- |
 | **Nevryk** | Full-Stack Developer     | [nsoliven](https://github.com/nsoliven) |
-| **Kay**     | Full-Stack Developer | [kayuh7](https://github.com/kayuh7)         |
+| **Kayleen**     | Full-Stack Developer | [kayuh7](https://github.com/kayuh7)         |
 
 
 ---
