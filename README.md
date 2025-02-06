@@ -3,6 +3,14 @@
 
 Algorithm Visualizer is an interactive web application that demonstrates how classic algorithms work through dynamic, animated visualizations. Built with a modern, widely adopted tech stack, the project is designed for performance, scalability, and an engaging user experience.
 
+## Main Developers
+
+| Name            | Role               | GitHub                                         |
+| --------------- | ------------------ | ---------------------------------------------- |
+| **Nevryk** | Full-Stack Developer     | [nsoliven](https://github.com/nsoliven) |
+| **Kay**     | Full-Stack Developer | [kayuh7](https://github.com/kayuh7)         |
+
+
 ---
 
 ## Table of Contents
@@ -61,12 +69,19 @@ Algorithm Visualizer brings algorithms to life by showing each step through inte
 - **Node.js** (v14+ recommended)
 - **npm** or **yarn**
 
+   ```bash
+   sudo apt install npm #install npm
+   npx create-next-app@latest algo-visualizer # create the npx app
+
+   # for next-app creation, we say YES to typescript
+   ```
+
 ### Installation
 
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/yourusername/algorithm-visualizer.git
+   git clone https://github.com/nsoliven/Algo-Visualizer
    cd algorithm-visualizer
    ```
 
