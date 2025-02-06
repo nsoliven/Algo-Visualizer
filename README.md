@@ -81,8 +81,9 @@ Algorithm Visualizer brings algorithms to life by showing each step through inte
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/nsoliven/Algo-Visualizer
-   cd algorithm-visualizer
+   git clone git@github.com:nsoliven/Algo-Visualizer.git 
+   git remote set-url origin git@github.com:nsoliven/Algo-Visualizer.git 
+   cd algo-visualizer
    ```
 
 2. **Install dependencies:**
