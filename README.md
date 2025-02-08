@@ -69,13 +69,6 @@ Algorithm Visualizer brings algorithms to life by showing each step through inte
 - **Node.js** (v14+ recommended)
 - **npm** or **yarn**
 
-   ```bash
-   sudo apt install npm #install npm
-   npx create-next-app@latest algo-visualizer # create the npx app
-
-   # for next-app creation, we say YES to typescript
-   ```
-
 ### Installation
 
 1. **Clone the repository:**
