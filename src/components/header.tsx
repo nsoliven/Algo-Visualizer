@@ -42,6 +42,9 @@ const header = () => {
                             <Link href="/arrays" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Arrays</Link>
                             <Link href="/graphs" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Graphs</Link>
                             <Link href="/trees" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Trees</Link>
+                            <Link href="/linked-lists" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Linked Lists</Link>
+                            <Link href="/heaps" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Heaps</Link>
+                            <Link href="/dynamic-programming" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Dynamic Programming</Link>
                         </div>
                     </div>
                 </div>
@@ -53,10 +56,13 @@ const header = () => {
             <div className="sm:hidden" id="mobile-menu">
                 <div className="space-y-1 px-2 pt-2 pb-3">
                     {/* <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" --> */}
-                    <Link href="#" className="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white" aria-current="page">Home</Link>
-                    <Link href="#" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Arrays</Link>
-                    <Link href="#" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Graphs</Link>
-                    <Link href="#" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Trees</Link>
+                    <Link href="/" className="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white" aria-current="page">Home</Link>
+                    <Link href="/arrays" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Arrays</Link>
+                    <Link href="/graphs" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Graphs</Link>
+                    <Link href="/trees" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Trees</Link>
+                    <Link href="/linked-lists" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Linked Lists</Link>
+                    <Link href="/heaps" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Heaps</Link>
+                    <Link href="/dynamic-programming" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Dynamic Programming</Link>
                 </div>
             </div>
         )}
