@@ -8,13 +8,6 @@ import * as d3 from "d3";
 import { generateRandomArray } from "../common";
 import { SortStep, getQuickSortSteps} from "@/algorithms-core/quicksort";
 
-// ──────────────────────────────────────────────
-// Helper: Generate a random array.
-
-// ─────────────────────────────────────────────
-
-// ──────────────────────────────────────────────
-// Page Component.
 const QuickSortPage: FC = () => {
   // Initialize state with a random array wrapped in a SortStep.
   const [currentStep, setCurrentStep] = useState<SortStep>(() => {

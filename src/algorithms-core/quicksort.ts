@@ -1,4 +1,3 @@
-
 // Quicksort with step recording.
 // Data structure to hold each sorting step.
 export interface SortStep {
