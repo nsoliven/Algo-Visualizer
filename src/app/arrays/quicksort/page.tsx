@@ -1,11 +1,16 @@
 "use client";
+
+//libraries
 import React, { useState, useEffect, FC, useRef } from "react";
-import Header from "../../../components/header";
-import Footer from "../../../components/footer";
-import Sidebar from "../../../components/code-side-bar";
 import * as d3 from "d3";
 
-import { generateRandomArray } from "../common";
+//webpage visuals
+import Header from "@/components/header";
+import Footer from "@/components/footer";
+import Sidebar from "@/components/code-side-bar";
+
+//algorithms core
+import { generateRandomArray } from "@/algorithms-core/arrays_common";
 import { SortStep, getQuickSortSteps} from "@/algorithms-core/quicksort";
 
 const QuickSortPage: FC = () => {
