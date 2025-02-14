@@ -57,7 +57,7 @@ const CardStyle2 = ({href, card_image, card_name, card_text}: CardProps) => (
             <Image 
               width={500}
               height={300}
-              src={card_image || imageLoader({ width: 500, height: 300 })}
+              src={card_image || imageLoader({ width: 1000, height: 600 })}
               alt="Placeholder image"
               className="object-cover rounded"
             />
