@@ -45,4 +45,32 @@ const CardStyle1 = ({ card_name, card_text, card_image, href}: CardProps) => (
 
 );
 
-export default CardStyle1;
+const CardStyle2 = ({href, card_image, card_name, card_text}: CardProps) => (
+  <div className="flex items-center space-x-10">
+    <div className="mb-8">
+      <Link href={href}>
+        <motion.div 
+        whileHover={{ scale: 1.05, boxShadow: "0px 10px 20px rgba(0, 0, 0, 0.2)" }}
+        className="rounded overflow-hidden shadow-lg bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100"
+        >
+        <div className="relative w-full aspect-[5/3]">
+            <Image 
+              width={500}
+              height={300}
+              src={card_image || imageLoader({ width: 1000, height: 600 })}
+              alt="Placeholder image"
+              className="object-cover rounded"
+            />
+        </div>
+        <h5 className="font-bold text-xl mb-2 px-2 py-1">{card_name}</h5>
+        </motion.div>
+      </Link>
+    </div>
+    <div className="px-12 py-6 w-full max-w-[760px] md:max-w-[600px] sm:max-w-[400px]">
+      <p className="text-gray-700 dark:text-gray-300 text-base">{card_text}</p>
+    </div>
+  </div>
+)
+
+
+export {CardStyle1, CardStyle2} ;
