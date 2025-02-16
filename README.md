@@ -1,7 +1,7 @@
 
-# Algorithm Visualizer (WIP NOT READY)
+# Algo-Visual (WIP NOT READY)
 
-Algorithm Visualizer is an interactive web application that demonstrates how classic algorithms work through dynamic, animated visualizations. Built with a modern, widely adopted tech stack, the project is designed for performance, scalability, and an engaging user experience.
+Algo-Visual is an interactive web application that demonstrates how classic algorithms work through dynamic, animated visualizations. Built with a modern, widely adopted tech stack, the project is designed for performance, scalability, and an engaging user experience.
 
 ## Main Developers
 
@@ -18,7 +18,6 @@ Algorithm Visualizer is an interactive web application that demonstrates how cla
 - [Overview](#overview)
 - [Features](#features)
 - [Tech Stack & Key Concepts](#tech-stack--key-concepts)
-- [Folder Structure](#folder-structure)
 - [Getting Started](#getting-started)
 - [Contributing](#contributing)
 - [License](#license)
@@ -28,7 +27,7 @@ Algorithm Visualizer is an interactive web application that demonstrates how cla
 
 ## Overview
 
-Algorithm Visualizer brings algorithms to life by showing each step through interactive animations and visual representations. The project leverages modern web technologies to deliver fast, SEO-friendly pages and a responsive interface. Whether you want to see sorting algorithms in action or follow a graph traversal, this application provides a clear and engaging learning experience.
+Algo-Visual brings algorithms to life by showing each step through interactive animations and visual representations. The project leverages modern web technologies to deliver fast, SEO-friendly pages and a responsive interface. Whether you want to see sorting algorithms in action or follow a graph traversal, this application provides a clear and engaging learning experience.
 
 ---
 
@@ -120,6 +119,6 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Final Remarks
 
-Algorithm Visualizer is built on a robust, common modern web stack that leverages Next.js’s SSR and SSG for speed and SEO, React for dynamic user interfaces, Tailwind CSS for rapid styling, Framer Motion for smooth animations, and D3.js with the Canvas API for high-performance visualizations. This architecture not only ensures a great user experience but also provides a scalable foundation for future enhancements.
+Algo-Visual is built on a robust, common modern web stack that leverages Next.js’s SSR and SSG for speed and SEO, React for dynamic user interfaces, Tailwind CSS for rapid styling, Framer Motion for smooth animations, and D3.js with the Canvas API for high-performance visualizations. This architecture not only ensures a great user experience but also provides a scalable foundation for future enhancements.
 
 Happy coding, and let’s bring algorithms to life!
