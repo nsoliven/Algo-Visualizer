@@ -4,12 +4,12 @@
 
 **Objective 2:** Complete the initial arrays page with major features completed.
 - **Technical Implementation:**
-    - Refactor and organize the existing codebase (routing, file structure, etc.).
-    - Fully set up Next.js dynamic routing and Tailwind CSS for responsive, consistent styling.
-    - Create reusable components to be used for the arrays algorithms
+  - [ ] Refactor and organize the existing codebase (routing, file structure, etc.).
+  - [ ] Fully set up Next.js dynamic routing and Tailwind CSS for responsive, consistent styling.
+  - [ ] Create reusable components to be used for the arrays algorithms
 - **Learning Components:**
-    - Familiarize with Next.js fundamentals and Tailwind CSS patterns.
-    - Get used to using D3.js. 
+    - [ ] Familiarize with Next.js fundamentals and Tailwind CSS patterns.
+    - [ ] Get used to using D3.js. 
 - **Outcome:** A clean, scalable foundation that supports smooth feature integration in subsequent sprints.
 ---
 ### Week 2: Arrays implementation
