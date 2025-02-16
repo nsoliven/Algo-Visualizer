@@ -1,7 +1,9 @@
 
-# Algo-Visual (WIP NOT READY)
+# Algo-Visuals (WIP NOT READY)
 
-Algo-Visual is an interactive web application that demonstrates how classic algorithms work through dynamic, animated visualizations. Built with a modern, widely adopted tech stack, the project is designed for performance, scalability, and an engaging user experience.
+**https://algovisuals.com**
+
+Algo-Visuals is an interactive web application that demonstrates how classic algorithms work through dynamic, animated visualsizations. Built with a modern, widely adopted tech stack, the project is designed for performance, scalability, and an engaging user experience.
 
 ## Main Developers
 
@@ -27,7 +29,7 @@ Algo-Visual is an interactive web application that demonstrates how classic algo
 
 ## Overview
 
-Algo-Visual brings algorithms to life by showing each step through interactive animations and visual representations. The project leverages modern web technologies to deliver fast, SEO-friendly pages and a responsive interface. Whether you want to see sorting algorithms in action or follow a graph traversal, this application provides a clear and engaging learning experience.
+Algo-Visuals brings algorithms to life by showing each step through interactive animations and visual representations. The project leverages modern web technologies to deliver fast, SEO-friendly pages and a responsive interface. Whether you want to see sorting algorithms in action or follow a graph traversal, this application provides a clear and engaging learning experience.
 
 ---
 
@@ -73,9 +75,8 @@ Algo-Visual brings algorithms to life by showing each step through interactive a
 1. **Clone the repository:**
 
    ```bash
-   git clone git@github.com:nsoliven/Algo-Visualizer.git 
-   git remote set-url origin git@github.com:nsoliven/Algo-Visualizer.git 
-   cd algo-visualizer
+   git clone git@github.com:algovisuals/Algo-Visuals.git
+   cd Algo-Visuals
    ```
 
 2. **Install dependencies:**
@@ -119,6 +120,6 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Final Remarks
 
-Algo-Visual is built on a robust, common modern web stack that leverages Next.js’s SSR and SSG for speed and SEO, React for dynamic user interfaces, Tailwind CSS for rapid styling, Framer Motion for smooth animations, and D3.js with the Canvas API for high-performance visualizations. This architecture not only ensures a great user experience but also provides a scalable foundation for future enhancements.
+Algo-Visuals is built on a robust, common modern web stack that leverages Next.js’s SSR and SSG for speed and SEO, React for dynamic user interfaces, Tailwind CSS for rapid styling, Framer Motion for smooth animations, and D3.js with the Canvas API for high-performance visualizations. This architecture not only ensures a great user experience but also provides a scalable foundation for future enhancements.
 
 Happy coding, and let’s bring algorithms to life!
