@@ -23,6 +23,7 @@ export function partition(arr: number[], left: number, right: number, steps: Sor
   const pivot = arr[right];
   let i = left;
 
+
   for (let j = left; j < right; j++) {
     // Record a step highlighting the element at index j (being compared against the pivot).
     steps.push({ arr: arr.slice(), pivotIndex: right, comparing: [j] });
