@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import { useState } from "react";
 
 type SidebarProps = {
   opt1Action: () => void;
@@ -14,27 +15,74 @@ type SidebarProps = {
  * @returns 
  */
 export default function Sidebar({ opt1Action, opt2Action, opt3Action }: SidebarProps) {
+  const [open, setOpen] = useState(false);
   return (
-    <div className="p-4">
-      <h2 className="text-xl font-semibold mb-4">Algorithm Controls</h2>
-      <button 
-        className="p-2 bg-gray-700 rounded-md w-full text-left hover:bg-gray-600"
-        onClick={opt1Action}
+    <>
+      {/* Sidebar Panel */}
+      <div
+        className={`fixed top-0 right-0 h-full w-64 bg-gray-800 text-white shadow-lg transition-transform duration-300 transform ${
+          open ? "translate-x-0" : "translate-x-full"
+        }`}
       >
-        Step
-      </button>
-      <button 
-        className="p-2 bg-gray-700 rounded-md w-full text-left hover:bg-gray-600 mt-2"
-        onClick={opt2Action}
+        <div className="p-4">
+          <h2 className="text-xl font-semibold mb-4">Algorithm Controls</h2>
+          <button
+            onClick={opt1Action}
+            className="w-full p-2 bg-gray-700 rounded-md text-left hover:bg-gray-600"
+          >
+            Step
+          </button>
+          <button
+            onClick={opt2Action}
+            className="w-full p-2 bg-gray-700 rounded-md text-left mt-2 hover:bg-gray-600"
+          >
+            Option 2
+          </button>
+          <button
+            onClick={opt3Action}
+            className="w-full p-2 bg-gray-700 rounded-md text-left mt-2 hover:bg-gray-600"
+          >
+            Option 3
+          </button>
+        </div>
+      </div>
+
+      {/* Toggle Button (Tab) */}
+      {/*
+        This button is always visible.
+        - When closed, it sits at the right edge (right-0) as the only visible element.
+        - When open, it shifts to the left edge of the panel (right-64).
+      */}
+      <button
+        onClick={() => setOpen(!open)}
+        className={`fixed top-1/2 transform -translate-y-1/2 bg-gray-800 text-gray-400 hover:bg-gray-700 hover:text-white p-2 rounded-l-md shadow-lg transition-all duration-300 ${
+          open ? "right-64" : "right-0"
+        }`}
       >
-        N/A
+        {open ? (
+          // X Icon: click to close the sidebar.
+          <svg
+            className="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        ) : (
+          // Bars Icon: click to open the sidebar.
+          <svg
+            className="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        )}
       </button>
-      <button 
-        className="p-2 bg-gray-700 rounded-md w-full text-left hover:bg-gray-600 mt-2"
-        onClick={opt3Action}
-      >
-        N/A
-      </button>
-    </div>
+    </>
   );
 }
