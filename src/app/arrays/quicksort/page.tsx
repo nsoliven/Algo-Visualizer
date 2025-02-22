@@ -1,39 +1,41 @@
-"use client"; //needed for d3
+"use client"; // needed for d3
 
-//libraries
 import React, { useState, useEffect, FC, useRef } from "react";
 import * as d3 from "d3";
 
-//webpage visuals
+// webpage visuals
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import Sidebar from "@/components/code-side-bar";
 
-//algorithms core
+// algorithms core
 import { generateRandomArray } from "@/algorithms-core/arrays_common";
-import { SortStep, getQuickSortSteps} from "@/algorithms-core/quicksort";
+import { SortStep, getQuickSortSteps } from "@/algorithms-core/quicksort";
 
 const QuickSortPage: FC = () => {
   // Initialize state with a random array wrapped in a SortStep.
   const [currentStep, setCurrentStep] = useState<SortStep>(() => {
-    const initial = generateRandomArray(25, 1, 1000); //generates 25 bars from 1 to 1000
+    const initial = generateRandomArray(25, 1, 1000); // generates 25 bars from 1 to 1000
     return { arr: initial };
   });
 
-  // On mount, generate the quicksort steps and update the visualization one step at a time.
-  useEffect(() => {
-    const steps = getQuickSortSteps(currentStep.arr);
-    let index = 0;
-    const interval = setInterval(() => {
-      if (index < steps.length) {
-        setCurrentStep(steps[index]);
-        index++;
-      } else {
-        clearInterval(interval);
-      }
-    }, 500);
-    return () => clearInterval(interval);
-  }, []); // Run once on mount
+  // New state to hold all steps and the current step index.
+  const [steps, setSteps] = useState<SortStep[]>([]);
+  const [stepIndex, setStepIndex] = useState<number>(0);
+
+  // This function is called on each button press to perform one step.
+  const handleStep = () => {
+    if (steps.length === 0) {
+      // Generate steps if not already created.
+      const newSteps = getQuickSortSteps(currentStep.arr);
+      setSteps(newSteps);
+      setStepIndex(1);
+      setCurrentStep(newSteps[0]);
+    } else if (stepIndex < steps.length) {
+      setCurrentStep(steps[stepIndex]);
+      setStepIndex(stepIndex + 1);
+    }
+  };
 
   return (
     <div className="flex flex-col min-h-screen transition-colors">
@@ -42,7 +44,11 @@ const QuickSortPage: FC = () => {
         <div className="w-full max-w-screen-2xl">
           <h1 className="text-4xl font-bold text-center mb-8">Quicksort Visualizer</h1>
           <div className="flex flex-col md:flex-row gap-8">
-            <Sidebar />
+            <Sidebar 
+              opt1Action={handleStep} 
+              opt2Action={() => {}} 
+              opt3Action={() => {}} 
+            />
             <div className="flex-1 bg-white dark:bg-gray-800 p-6 shadow-lg rounded-lg">
               <ArrayVisualizer step={currentStep} />
             </div>
@@ -58,9 +64,6 @@ interface ArrayVisualizerProps {
   step: SortStep;
 }
 
-// ──────────────────────────────────────────────
-// ArrayVisualizer: Uses D3 (with zoom support) to display the current array.
-// Highlights the pivot (red stroke) and the elements currently being compared (orange stroke).
 const ArrayVisualizer: FC<ArrayVisualizerProps> = ({ step }) => {
   const { arr, pivotIndex, comparing } = step;
   const svgRef = useRef<SVGSVGElement | null>(null);
@@ -108,21 +111,22 @@ const ArrayVisualizer: FC<ArrayVisualizerProps> = ({ step }) => {
         return "none";
       })
       .attr("stroke-width", (d, i) => {
-        if ((pivotIndex !== undefined && i === pivotIndex) || (comparing && comparing.includes(i))) return 3;
+        if ((pivotIndex !== undefined && i === pivotIndex) || (comparing && comparing.includes(i)))
+          return 3;
         return 0;
       })
       .transition()
       .duration(500)
-      .attr("y", d => yScale(d))
-      .attr("height", d => height - yScale(d));
+      .attr("y", (d) => yScale(d))
+      .attr("height", (d) => height - yScale(d));
 
     // UPDATE: Update existing bars.
     bars.transition()
       .duration(500)
       .attr("x", (_, i) => i * barWidth)
       .attr("width", barWidth - 5)
-      .attr("y", d => yScale(d))
-      .attr("height", d => height - yScale(d))
+      .attr("y", (d) => yScale(d))
+      .attr("height", (d) => height - yScale(d))
       .attr("fill", "steelblue")
       .attr("stroke", (d, i) => {
         if (pivotIndex !== undefined && i === pivotIndex) return "red";
@@ -130,7 +134,8 @@ const ArrayVisualizer: FC<ArrayVisualizerProps> = ({ step }) => {
         return "none";
       })
       .attr("stroke-width", (d, i) => {
-        if ((pivotIndex !== undefined && i === pivotIndex) || (comparing && comparing.includes(i))) return 3;
+        if ((pivotIndex !== undefined && i === pivotIndex) || (comparing && comparing.includes(i)))
+          return 3;
         return 0;
       });
 
@@ -145,7 +150,6 @@ const ArrayVisualizer: FC<ArrayVisualizerProps> = ({ step }) => {
 
   return (
     <div className="w-full flex justify-center">
-      {/* Container with background */}
       <div className="p-4" style={{ background: "#f5f5f5" }}>
         <svg ref={svgRef} width={800} height={400} />
       </div>

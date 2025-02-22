@@ -1,12 +1,21 @@
 "use client";
 import { useState } from "react";
 
-export default function Sidebar() {
-  // 'open' state controls whether the sidebar panel is visible.
-  // When open, the panel is fully in view.
-  // When closed, the panel slides completely off-screen.
-  const [open, setOpen] = useState(false);
+type SidebarProps = {
+  opt1Action: () => void;
+  opt2Action: () => void;
+  opt3Action: () => void;
+};
 
+/**
+ * Sidebar main function will simply execute 3 different functions
+ * @param opt1Action: the stepping button, step through the algorithm at one step
+ * @param opt2Action: N/A not implemented
+ * @param opt3Action: N/A not implemented
+ * @returns 
+ */
+export default function Sidebar({ opt1Action, opt2Action, opt3Action }: SidebarProps) {
+  const [open, setOpen] = useState(false);
   return (
     <>
       {/* Sidebar Panel */}
@@ -17,19 +26,32 @@ export default function Sidebar() {
       >
         <div className="p-4">
           <h2 className="text-xl font-semibold mb-4">Algorithm Controls</h2>
-          <ul className="space-y-3">
-            <li className="p-2 bg-gray-700 rounded-md">Option 1</li>
-            <li className="p-2 bg-gray-700 rounded-md">Option 2</li>
-            <li className="p-2 bg-gray-700 rounded-md">Option 3</li>
-          </ul>
+          <button
+            onClick={opt1Action}
+            className="w-full p-2 bg-gray-700 rounded-md text-left hover:bg-gray-600"
+          >
+            Step
+          </button>
+          <button
+            onClick={opt2Action}
+            className="w-full p-2 bg-gray-700 rounded-md text-left mt-2 hover:bg-gray-600"
+          >
+            Option 2
+          </button>
+          <button
+            onClick={opt3Action}
+            className="w-full p-2 bg-gray-700 rounded-md text-left mt-2 hover:bg-gray-600"
+          >
+            Option 3
+          </button>
         </div>
       </div>
 
       {/* Toggle Button (Tab) */}
-      {/* 
-          This button is always visible.
-          - When the sidebar is closed, it sits at the right edge (right-0) as the only visible element.
-          - When open, it shifts to the left edge of the panel (right-64).
+      {/*
+        This button is always visible.
+        - When closed, it sits at the right edge (right-0) as the only visible element.
+        - When open, it shifts to the left edge of the panel (right-64).
       */}
       <button
         onClick={() => setOpen(!open)}
