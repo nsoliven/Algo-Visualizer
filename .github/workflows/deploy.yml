@@ -21,18 +21,22 @@ jobs:
 
       # Save the Docker image to a tar file
       - name: Save Docker image to tarball
-        run: docker save -o myapp.tar myapp:latest
+        run: |
+          docker save -o myapp.tar myapp:latest
+          ls -la myapp.tar  # Verify file exists and check size
+          chmod 644 myapp.tar  # Ensure file has proper permissions
 
       # Transfer the tarball to your Linux server
       - name: Copy image tarball to server
-        uses: appleboy/scp-action@master
+        uses: appleboy/scp-action@v0.1.4  # Use specific version instead of master
         with:
           host: ${{ secrets.SERVER_IP }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
           source: "myapp.tar"
-          target: "~/myapp.tar"
+          target: "~/"
+          debug: true  # Enable debug mode to get more information
 
       # Deploy on the Linux server: load the image and run the container
       - name: Deploy on Linux server
@@ -43,6 +47,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
           script: |
+            ls -la ~/myapp.tar  # Verify file exists on server
             docker load -i ~/myapp.tar
             docker stop myapp || true
             docker rm myapp || true
