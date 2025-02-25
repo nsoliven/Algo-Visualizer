@@ -33,7 +33,7 @@ jobs:
           host: ${{ secrets.SERVER_IP }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: 22
+          port: ${{ secrets.SERVER_PORT }}
           source: "myapp.tar"
           target: "~/"
           debug: true  # Enable debug mode to get more information
