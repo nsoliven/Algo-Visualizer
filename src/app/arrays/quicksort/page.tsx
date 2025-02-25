@@ -3,6 +3,7 @@
 //libraries
 import React, { useState, useEffect, FC, useRef } from "react";
 import * as d3 from "d3";
+import ArrayBase from "@/components/array-base";
 
 //webpage visuals
 import Header from "@/components/header";
@@ -35,6 +36,9 @@ const QuickSortPage: FC = () => {
     return () => clearInterval(interval);
   }, []); // Run once on mount
 
+  //declaring constant variable numbers and assigning it to the array of numbers
+  const numbers = [10, 3, 8, 15, 6, 1, 14, 7];
+
   return (
     <div className="flex flex-col min-h-screen transition-colors">
       <Header />
@@ -45,6 +49,7 @@ const QuickSortPage: FC = () => {
             <Sidebar />
             <div className="flex-1 bg-white dark:bg-gray-800 p-6 shadow-lg rounded-lg">
               <ArrayVisualizer step={currentStep} />
+              <ArrayBase array = {numbers}/>
             </div>
           </div>
         </div>
