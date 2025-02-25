@@ -45,7 +45,7 @@ jobs:
           host: ${{ secrets.SERVER_IP }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: 22
+          port: ${{ secrets.SERVER_PORT }}
           script: |
             ls -la ~/myapp.tar  # Verify file exists on server
             docker load -i ~/myapp.tar
