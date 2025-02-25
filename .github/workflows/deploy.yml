@@ -11,8 +11,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    outputs:
-      image_tar: myapp.tar
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -26,14 +24,26 @@ jobs:
       - name: Save Docker image to tarball
         run: |
           docker save -o myapp.tar myapp:latest
-          ls -la myapp.tar  # Verify file exists and check size
-          chmod 644 myapp.tar  # Ensure proper permissions
+          ls -la myapp.tar  # Verify file exists
+          chmod 644 myapp.tar
+
+      - name: Upload Docker image tarball
+        uses: actions/upload-artifact@v3
+        with:
+          name: myapp-tar
+          path: myapp.tar
 
   deploy:
     needs: build
     if: github.event_name == 'push'
     runs-on: ubuntu-latest
     steps:
+      - name: Download Docker image tarball
+        uses: actions/download-artifact@v3
+        with:
+          name: myapp-tar
+          path: .
+
       - name: Copy image tarball to server
         uses: appleboy/scp-action@v0.1.4
         with:
@@ -51,9 +61,9 @@ jobs:
           host: ${{ secrets.SERVER_IP }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: 22
+          port: ${{ secrets.SERVER_PORT }}
           script: |
-            ls -la ~/myapp.tar  # Verify tarball exists
+            ls -la ~/myapp.tar  # Verify file exists on server
             docker load -i ~/myapp.tar
             docker stop myapp || true
             docker rm myapp || true
