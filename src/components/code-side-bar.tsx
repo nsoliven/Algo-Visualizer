@@ -2,9 +2,9 @@
 import { useState } from "react";
 
 interface SidebarProps {
-  opt1Action: () => any;
-  opt2Action: () => any;
-  opt3Action: () => any;
+  opt1Action: () => void;
+  opt2Action: () => void;
+  opt3Action: () => void;
   isAutoStepping?: boolean; // Add this prop
 }
 
