@@ -22,19 +22,90 @@ const QuickSortPage: FC = () => {
   // New state to hold all steps and the current step index.
   const [steps, setSteps] = useState<SortStep[]>([]);
   const [stepIndex, setStepIndex] = useState<number>(0);
+  const [isAutoStepping, setIsAutoStepping] = useState(false);
+  const autoStepIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
   // This function is called on each button press to perform one step.
+  const generateSteps = () => {
+    const newSteps = getQuickSortSteps(currentStep.arr);
+    setSteps(newSteps);
+    setStepIndex(1);
+    setCurrentStep(newSteps[0]);
+  };
+
   const handleStep = () => {
     if (steps.length === 0) {
       // Generate steps if not already created.
-      const newSteps = getQuickSortSteps(currentStep.arr);
-      setSteps(newSteps);
-      setStepIndex(1);
-      setCurrentStep(newSteps[0]);
+      generateSteps();
     } else if (stepIndex < steps.length) {
       setCurrentStep(steps[stepIndex]);
       setStepIndex(stepIndex + 1);
     }
+  };
+
+  const handleToggleAutoStep = () => {
+    // Toggle state
+    setIsAutoStepping(prevState => {
+      const newState = !prevState;
+      
+      if (newState) {
+        // Starting auto-stepping
+        if (steps.length === 0) {
+          // Generate steps first
+          const newSteps = getQuickSortSteps(currentStep.arr);
+          setSteps(newSteps);
+          setStepIndex(1);
+          setCurrentStep(newSteps[0]);
+          
+          // Set interval with the new steps we just created
+          autoStepIntervalRef.current = setInterval(() => {
+            setStepIndex(prevIndex => {
+              if (prevIndex < newSteps.length) {
+                setCurrentStep(newSteps[prevIndex]);
+                return prevIndex + 1;
+              } else {
+                if (autoStepIntervalRef.current) {
+                  clearInterval(autoStepIntervalRef.current);
+                  autoStepIntervalRef.current = null;
+                }
+                setIsAutoStepping(false);
+                return prevIndex;
+              }
+            });
+          }, 500);
+        } else {
+          // Clear any existing interval first
+          if (autoStepIntervalRef.current) {
+            clearInterval(autoStepIntervalRef.current);
+          }
+          
+          // Set up new interval with existing steps
+          autoStepIntervalRef.current = setInterval(() => {
+            setStepIndex(prevIndex => {
+              if (prevIndex < steps.length) {
+                setCurrentStep(steps[prevIndex]);
+                return prevIndex + 1;
+              } else {
+                if (autoStepIntervalRef.current) {
+                  clearInterval(autoStepIntervalRef.current);
+                  autoStepIntervalRef.current = null;
+                }
+                setIsAutoStepping(false);
+                return prevIndex;
+              }
+            });
+          }, 500);
+        }
+      } else {
+        // Stopping auto-stepping
+        if (autoStepIntervalRef.current) {
+          clearInterval(autoStepIntervalRef.current);
+          autoStepIntervalRef.current = null;
+        }
+      }
+      
+      return newState;
+    });
   };
 
   return (
@@ -45,9 +116,10 @@ const QuickSortPage: FC = () => {
           <h1 className="text-4xl font-bold text-center mb-8">Quicksort Visualizer</h1>
           <div className="flex flex-col md:flex-row gap-8">
             <Sidebar 
-              opt1Action={handleStep} 
-              opt2Action={() => {}} 
+              opt1Action={handleToggleAutoStep} 
+              opt2Action={handleStep} 
               opt3Action={() => {}} 
+              isAutoStepping={isAutoStepping}
             />
             <div className="flex-1 bg-white dark:bg-gray-800 p-6 shadow-lg rounded-lg">
               <ArrayVisualizer step={currentStep} />
@@ -150,8 +222,13 @@ const ArrayVisualizer: FC<ArrayVisualizerProps> = ({ step }) => {
 
   return (
     <div className="w-full flex justify-center">
-      <div className="p-4" style={{ background: "#f5f5f5" }}>
-        <svg ref={svgRef} width={800} height={400} />
+      <div className="p-4 bg-gray-100 dark:bg-gray-700 rounded-lg">
+        <svg 
+          ref={svgRef} 
+          width={800} 
+          height={400} 
+          className="bg-white dark:bg-gray-800" 
+        />
       </div>
     </div>
   );
