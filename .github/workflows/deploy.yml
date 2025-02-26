@@ -28,7 +28,7 @@ jobs:
           chmod 644 myapp.tar
 
       - name: Upload Docker image tarball
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: myapp-tar
           path: myapp.tar
@@ -39,7 +39,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download Docker image tarball
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: myapp-tar
           path: .
