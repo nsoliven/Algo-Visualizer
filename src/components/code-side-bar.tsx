@@ -1,42 +1,47 @@
 "use client";
 import { useState } from "react";
 
-type SidebarProps = {
+interface SidebarProps {
   opt1Action: () => void;
   opt2Action: () => void;
   opt3Action: () => void;
-};
+  isAutoStepping?: boolean; // Add this prop
+}
 
 /**
  * Sidebar main function will simply execute 3 different functions
  * @param opt1Action: the stepping button, step through the algorithm at one step
  * @param opt2Action: N/A not implemented
  * @param opt3Action: N/A not implemented
+ * @param isAutoStepping: boolean to determine if the algorithm is auto stepping
  * @returns 
  */
-export default function Sidebar({ opt1Action, opt2Action, opt3Action }: SidebarProps) {
+export default function Sidebar({ opt1Action, opt2Action, opt3Action, isAutoStepping }: SidebarProps) {
   const [open, setOpen] = useState(false);
+  
   return (
     <>
       {/* Sidebar Panel */}
-      <div
-        className={`fixed top-0 right-0 h-full w-64 bg-gray-800 text-white shadow-lg transition-transform duration-300 transform ${
-          open ? "translate-x-0" : "translate-x-full"
-        }`}
-      >
+      <div className={`fixed top-0 right-0 h-full w-64 bg-gray-800 text-white shadow-lg transition-transform duration-300 transform ${
+        open ? "translate-x-0" : "translate-x-full"
+      }`}>
         <div className="p-4">
           <h2 className="text-xl font-semibold mb-4">Algorithm Controls</h2>
           <button
             onClick={opt1Action}
-            className="w-full p-2 bg-gray-700 rounded-md text-left hover:bg-gray-600"
+            className={`w-full p-2 rounded-md text-left ${
+              isAutoStepping 
+                ? "bg-green-600 hover:bg-green-700" 
+                : "bg-gray-700 hover:bg-gray-600"
+            }`}
           >
-            Step
+            Toggle Auto Stepping (0.5s)
           </button>
           <button
             onClick={opt2Action}
             className="w-full p-2 bg-gray-700 rounded-md text-left mt-2 hover:bg-gray-600"
           >
-            Option 2
+            Manual Step
           </button>
           <button
             onClick={opt3Action}
