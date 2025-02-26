@@ -32,6 +32,7 @@ jobs:
         with:
           name: myapp-tar
           path: myapp.tar
+          retention-days: 3
 
   deploy:
     needs: build
